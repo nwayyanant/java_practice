@@ -23,17 +23,23 @@ Explanation: In this case, no transactions are done and the max profit = 0.
 class Solution {
     public int maxProfit(int[] prices) {
         int max_profit = 0;
-        int i = 0;
-        int j = prices.length-1;
-        while(i<j)
-        {   
-            if (max_profit < (prices[j]-prices[i]))
+        int lowest_price = prices[0];
+        int highest_price = 0;
+        int j = prices.length -1;
+
+        for(int i = 0; i< prices.length; i++)
+        {
+            lowest_price = (lowest_price > prices[i])? prices[i]: lowest_price;
+            
+            if (max_profit < prices[i] - lowest_price) //4 
             {
-                max_profit = prices[j]-prices[i];
+                max_profit = prices[i] - lowest_price;
             }
-            i++;
-            j--;
+                
         }
+            
+            
         return max_profit;
     }
+}
 }
